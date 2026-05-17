@@ -1,0 +1,12 @@
+# Deck output files (user-specific)
+decks/
+
+# Pipeline intermediate files
+tmp/
+
+# Claude local settings (may contain user-specific permissions)
+.claude/settings.local.json
+
+# Memory (user-specific)
+.claude/memory/
+.claude/projects/

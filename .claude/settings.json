@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(*)",
+      "Write(*)",
+      "Edit(*)",
+      "Read(*)",
+      "WebFetch(domain:scryfall.com)",
+      "WebFetch(domain:api.scryfall.com)",
+      "WebFetch(domain:json.edhrec.com)"
+    ],
+    "deny": [
+      "Bash(python3 -c *)"
+    ]
+  }
+}
