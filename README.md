@@ -29,15 +29,15 @@ Then inside Claude Code:
 
 `/build-deck` runs 6 agents across 6 phases:
 
-1. **Validate** — confirms the commander is legal via Scryfall
-2. **Research** — 3 agents run in parallel, each searching different angles to avoid overlapping results:
+0. **Validate** — confirms the commander is legal via Scryfall
+1. **Research** — 3 agents run in parallel, each searching different angles to avoid overlapping results:
    - *EDHRec + Synergy* — pulls top synergy cards and staples from EDHRec, cross-references with Scryfall
    - *Mechanic Payoffs* — finds cards that specifically exploit the commander's unique ability
    - *Infrastructure* — sources draw, ramp, removal, and lands for the color identity
-3. **Build** — reads all research files and assembles a 100-card list, validating every card against Scryfall
-4. **Analyze** — independent audit for nonbos, dead cards, category imbalance, and mana base issues
-5. **Price & Compile** — prices the deck, swaps cards if over budget, and writes the final output file
-6. **Summary** — reports the deck to the user
+2. **Build** — reads all research files and assembles a 100-card list, validating every card against Scryfall
+3. **Analyze** — independent audit for nonbos, dead cards, category imbalance, and mana base issues
+4. **Price & Compile** — prices the deck, swaps cards if over budget, and writes the final output file
+5. **Summary** — reports the deck to the user
 
 `/update-deck` follows the same pattern: 2 research agents analyze the existing list for weaknesses, a swap builder proposes upgrades, a swap analyst validates the changes, and a pricer compiles the result.
 
