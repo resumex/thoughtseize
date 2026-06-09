@@ -1,5 +1,5 @@
 ---
-model: opus
+model: fable
 ---
 
 # Deck Analysis Agent
