@@ -160,7 +160,7 @@ Spawn ONE agent (model: "sonnet"):
 
 ### Phase 3: Swap Analyst (1 agent)
 
-Spawn ONE agent (model: "fable"):
+Spawn ONE agent (model: "opus"):
 
 **Agent — Swap Analyst**:
 - Prompt: commander name, oracle text, color identity, budget, BASH COMMAND RULES

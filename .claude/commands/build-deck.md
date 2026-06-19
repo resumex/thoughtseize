@@ -164,7 +164,7 @@ Spawn ONE agent (model: "sonnet"):
 
 ### Phase 3: Deck Analyst (1 agent)
 
-Spawn ONE agent (model: "fable"):
+Spawn ONE agent (model: "opus"):
 
 **Agent — Deck Analyst**:
 - Prompt: commander name, oracle text, color identity, theme, budget, BASH COMMAND RULES
