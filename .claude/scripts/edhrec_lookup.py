@@ -54,20 +54,21 @@ def commander(name, theme=None):
         "slug": slug,
         "theme": theme,
     }
-    if "container" in data:
-        container = data["container"]
-        result["num_decks"] = container.get("json_dict", {}).get("numDecks", 0)
-    cardlists = data.get("cardlists", [])
+    json_dict = data.get("container", {}).get("json_dict", {})
+    result["num_decks"] = json_dict.get("card", {}).get("num_decks", 0)
+    # EDHRec nests cardlists under container.json_dict; older responses had them top-level
+    cardlists = json_dict.get("cardlists") or data.get("cardlists", [])
     for cl in cardlists:
         tag = cl.get("tag", "")
         cards = []
         for card in cl.get("cardviews", [])[:30]:
+            num_decks = card.get("num_decks", 0)
+            potential = card.get("potential_decks", 0)
             cards.append({
                 "name": card.get("name", ""),
-                "synergy": card.get("synergy", 0),
-                "inclusion": card.get("inclusion", 0),
-                "num_decks": card.get("num_decks", 0),
-                "label": card.get("label", ""),
+                "synergy": round(card.get("synergy", 0), 3),
+                "inclusion": round(num_decks / potential, 3) if potential else 0,
+                "num_decks": num_decks,
             })
         if cards:
             result[tag] = cards
@@ -81,16 +82,16 @@ def card(name):
 
 
 def top():
-    url = f"{API_BASE}/pages/top/week.json"
+    url = f"{API_BASE}/pages/commanders/week.json"
     data = fetch(url)
     if "error" in data:
         return data
+    cardlists = data.get("container", {}).get("json_dict", {}).get("cardlists") or [{}]
     commanders = []
-    for entry in data.get("cardlists", [{}])[0].get("cardviews", [])[:20]:
+    for entry in cardlists[0].get("cardviews", [])[:20]:
         commanders.append({
             "name": entry.get("name", ""),
             "num_decks": entry.get("num_decks", 0),
-            "label": entry.get("label", ""),
         })
     return {"trending": commanders}
 
